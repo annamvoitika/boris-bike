@@ -15,4 +15,13 @@ describe "Docking station is an instance" do
     expect(docking_station_1).respond_to?(docking_station_1.release_bike.working?)
   end
 
+  it "docking a bike in a station" do
+    docking_station_1 = DockingStation.new
+    expect(docking_station_1.dock_a_bike("bike 1")).to eq("bike 1 has docked")
+  end
+
+  it "check if dock has a bike" do
+    docking_station_1 = DockingStation.new
+    expect(docking_station_1.bike_available?).to eq(true)
+  end
 end

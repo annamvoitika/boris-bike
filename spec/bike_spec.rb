@@ -9,4 +9,5 @@ describe "Bike class" do
     bikeworking = Bike.new
     expect(bikeworking).respond_to?(bikeworking.working?)
   end
+  
 end
