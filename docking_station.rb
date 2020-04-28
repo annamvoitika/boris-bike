@@ -2,10 +2,22 @@ class DockingStation
   attr_reader :bike
 
   def initialize
-
+  @list_of_bikes = ["bike1", "bike2", "bike3"]
   end
 
-  def release_bike
+  def bike_available?
+    if @list_of_bikes.include? @bike
+      return true
+    else
+      return false
+    end
+  end
+
+  def release_bike(bike)
+    @bike = bike 
+    if bike_available?() == false
+      fail "bike is not available"
+    end
     return Bike.new
   end
 
@@ -16,9 +28,6 @@ class DockingStation
     return "#{@bike} has docked"
   end
 
-  def bike_available?
-      return true
-  end
 
 end
 

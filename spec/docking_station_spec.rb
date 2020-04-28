@@ -7,12 +7,12 @@ describe "Docking station is an instance" do
 
   it "Docking station should release bike" do
       docking_1 = DockingStation.new
-      expect(docking_1.release_bike).to be_instance_of Bike
+      expect(docking_1.release_bike("available")).to be_instance_of Bike
   end
 
   it "Released bike should be working" do
     docking_station_1 = DockingStation.new
-    expect(docking_station_1).respond_to?(docking_station_1.release_bike.working?)
+    expect(docking_station_1).respond_to?(docking_station_1.release_bike("available").working?)
   end
 
   it "docking a bike in a station" do
@@ -24,4 +24,11 @@ describe "Docking station is an instance" do
     docking_station_1 = DockingStation.new
     expect(docking_station_1.bike_available?).to eq(true)
   end
+
+  it "does not release a bike if none available" do
+    docking_station_1 = DockingStation.new
+    expect{docking_station_1.release_bike("unavailable")}.to raise_error "bike is not available"
+  end
+
+
 end
