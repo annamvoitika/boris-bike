@@ -1,13 +1,5 @@
-require "../docking_station.rb"
+require 'bike'
 
-describe "Bike class" do
-  it "checks if the bike is working" do
-  expect(Bike.new).to be_instance_of Bike
-  end
-
-  it "responds to working?" do
-    bikeworking = Bike.new
-    expect(bikeworking).respond_to?(bikeworking.working?)
-  end
-  
+describe Bike do
+  it { is_expected.to respond_to :working? }
 end
