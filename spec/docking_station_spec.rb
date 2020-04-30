@@ -14,9 +14,8 @@ describe DockingStation do
   end
 
   it 'if bikes broken it does not release' do
-    bike = Bike.new
-    bike.report_broken
-    subject.dock(bike)
+    bike = double(:bike, working?: false)
+    subject.bikes.push(bike)
     expect {subject.release_bike}.to raise_error 'Bike is broken'
   end
 

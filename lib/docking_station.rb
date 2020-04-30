@@ -37,9 +37,6 @@ class DockingStation
     @bikes.empty?
   end
 
-  def working?
-    @working
-  end
 end
 
 class Bike
