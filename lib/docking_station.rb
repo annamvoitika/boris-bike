@@ -1,4 +1,4 @@
-require_relative 'bike'
+require_relative './bike'
 
 class DockingStation
   DEFAULT_CAPACITY = 20
@@ -10,22 +10,19 @@ class DockingStation
     @bikes = []
   end
 
-  def bike
-    @bike
-  end
-
-  def broken?
-    true
+  def bikes
+    @bikes
   end
 
   def release_bike
-    fail 'No bikes available' if empty?
-    fail 'No bikes available' if broken?
+    raise 'No bikes available' if empty?
+   raise 'Bike is broken' unless bikes.last.working?
     @bikes.pop
   end
 
   def dock(bike)
     fail 'Docking station full' if full?
+    #bike.working = false if !working
     @bikes << bike
   end
 
@@ -39,8 +36,30 @@ class DockingStation
   def empty?
     @bikes.empty?
   end
+
+  def working?
+    @working
+  end
+end
+
+class Bike
+  def initialize
+    @working = true
   end
 
+  def report_broken
+    @broken = true
+  end
+
+  def broken?
+   @broken
+  end
+
+  def working?
+    @working
+  end
+
+end
 
 
 
